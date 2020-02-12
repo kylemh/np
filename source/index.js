@@ -40,7 +40,8 @@ module.exports = async (input = 'patch', options) => {
 	options = {
 		cleanup: true,
 		tests: true,
-		publish: true,
+		isExplicitPrivatePublish: false,
+		shouldRunPublish: true,
 		...options
 	};
 
@@ -56,7 +57,6 @@ module.exports = async (input = 'patch', options) => {
 	const pkg = util.readPkg(options.contents);
 	const runTests = options.tests && !options.yolo;
 	const runCleanup = options.cleanup && !options.yolo;
-	const runPublish = options.publish && !pkg.private;
 	const pkgManager = options.yarn === true ? 'yarn' : 'npm';
 	const pkgManagerName = options.yarn === true ? 'Yarn' : 'npm';
 	const rootDir = pkgDir.sync();
@@ -104,7 +104,7 @@ module.exports = async (input = 'patch', options) => {
 	const tasks = new Listr([
 		{
 			title: 'Prerequisite check',
-			enabled: () => runPublish,
+			enabled: () => options.shouldRunPublish,
 			task: () => prerequisiteTasks(input, pkg, options)
 		},
 		{
@@ -182,7 +182,7 @@ module.exports = async (input = 'patch', options) => {
 		}
 	]);
 
-	if (runPublish) {
+	if (options.shouldRunPublish) {
 		tasks.add([
 			{
 				title: `Publishing package using ${pkgManagerName}`,
@@ -224,7 +224,7 @@ module.exports = async (input = 'patch', options) => {
 				return 'Upstream branch not found; not pushing.';
 			}
 
-			if (publishStatus === 'FAILED' && runPublish) {
+			if (publishStatus === 'FAILED' && options.shouldRunPublish) {
 				return 'Couldn\'t publish package to npm; not pushing.';
 			}
 		},
