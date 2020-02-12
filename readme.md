@@ -1,17 +1,4 @@
-# np [![Build Status](https://travis-ci.org/sindresorhus/np.svg?branch=master)](https://travis-ci.org/sindresorhus/np) [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo)
-
 > A better `npm publish`
-
-<div>
-	<br>
-	<br>
-	<a href="https://issuehunt.io">
-		<img src="https://user-images.githubusercontent.com/170270/50307315-5c349200-0498-11e9-95bb-e51a8cfc2b15.png" width="600">
-	</a>
-	<br>
-	<br>
-	<br>
-</div>
 
 <img src="screenshot.gif" width="688">
 
@@ -275,6 +262,6 @@ If you're running into other issues when using SSH, please consult [GitHub's sup
 
 ## Maintainers
 
-- [Sindre Sorhus](https://github.com/sindresorhus)
-- [Sam Verschueren](https://github.com/SamVerschueren)
-- [Itai Steinherz](https://github.com/itaisteinherz)
+None
+
+Temporarily hijacking this until work is merged into original repository (this is a fork).
